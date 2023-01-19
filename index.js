@@ -53,7 +53,7 @@ app.use((err, req, res, next) => {
 });
 // socket start
 app.use("/",(req,res)=>{
-res.send("hello ashish")
+res.send("hello ashish how ")
 })
 // adding routing middle ware
 app.use("/v1/test", TestRouter);
