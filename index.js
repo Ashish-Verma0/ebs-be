@@ -58,10 +58,10 @@ app.use("/v1/test", TestRouter);
 app.use("/v1/user", UserRouter);
 // routing listening
 async function startServer() {
+  await startDb();
   if (isMaster) {
     for (let i of cpus())  fork()
   } else {
-    await startDb();
     server.listen(port, () =>console.log("Server running on port", port));
   }
 }
