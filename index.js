@@ -3,8 +3,6 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const server = http.createServer(app);
-const { Server } = require("socket.io");
-const socket = new Server(server);
 const port = process.env.PORT;
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -15,7 +13,6 @@ const body_parser = require("body-parser");
 const { isMaster, fork } = require("cluster");
 const { cpus } = require("os");
 const cors = require("cors");
-const startSocket = require("./src/web/socket");
 const TestRouter = require("./src/routes/Test.routes");
 const UserRouter = require("./src/routes/User.routes");
 // adding middleware
@@ -55,7 +52,7 @@ app.use((err, req, res, next) => {
   }
 });
 // socket start
-startSocket(socket);
+
 // adding routing middle ware
 app.use("/v1/test", TestRouter);
 app.use("/v1/user", UserRouter);
