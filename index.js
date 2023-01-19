@@ -52,16 +52,18 @@ app.use((err, req, res, next) => {
   }
 });
 // socket start
-
+app.use("/",(req,res)=>{
+res.send("hello ashish")
+})
 // adding routing middle ware
 app.use("/v1/test", TestRouter);
 app.use("/v1/user", UserRouter);
 // routing listening
 async function startServer() {
-   startDb();
   if (isMaster) {
     for (let i of cpus())  fork()
   } else {
+    await startDb();
     server.listen(port, () =>console.log("Server running on port", port));
   }
 }
