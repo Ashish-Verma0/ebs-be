@@ -58,7 +58,7 @@ app.use("/v1/test", TestRouter);
 app.use("/v1/user", UserRouter);
 // routing listening
 async function startServer() {
-  await startDb();
+   startDb();
   if (isMaster) {
     for (let i of cpus())  fork()
   } else {
